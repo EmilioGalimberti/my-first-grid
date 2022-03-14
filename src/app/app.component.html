@@ -1,17 +1,22 @@
-<ag-grid-angular
-    #agGrid
-    style="width: 500px; height: 500px;"
-    class="ag-theme-alpine"
-    [rowData]="rowData | async"
-    [columnDefs]="columnDefs"
-    rowSelection="multiple"
->
-</ag-grid-angular>
-<!--Button that gets the selected data and 
-    sends it to the server. To do this, 
-    we are going to use the AG Grid API - 
-    we will access it through the component 
-    instance. To access to component instance 
-    we will need to add the #agGrid id to our 
-    component.-->
-<button (click)="getSelectedRows()">Get Selected Rows</button>
+<html>
+    <ag-grid-angular
+        #agGrid
+        style="width: 590px; height: 500px;"
+        class="ag-theme-alpine"
+        [rowData]="rowData | async"
+        [columnDefs]="columnDefs"
+        rowSelection="multiple"
+        [groupSelectsChildren]="true"
+        [defaultColDef]="defaultColDef"
+        [autoGroupColumnDef]="autoGroupColumnDef"
+    >
+    </ag-grid-angular>
+    <!--Button that gets the selected data and 
+        sends it to the server. To do this, 
+        we are going to use the AG Grid API - 
+        we will access it through the component 
+        instance. To access to component instance 
+        we will need to add the #agGrid id to our 
+        component.-->
+    <button (click)="getSelectedRows()">Get Selected Rows</button>
+</html>

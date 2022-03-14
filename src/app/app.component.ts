@@ -10,13 +10,27 @@ import { AgGridAngular } from 'ag-grid-angular';
    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  // AGREFAMOS EL VIEW CHILD PARA EL TEME DE LAS GETSELETCROWS PERO NO ME ACUERDO QUE HACIA EXACTAMENTE EL VIEWCHILD
    @ViewChild('agGrid') agGrid!: AgGridAngular;
 
+   defaultColDef: ColDef = {
+      sortable: true,
+      filter: true
+  };
+
    columnDefs: ColDef[] = [
-       {field: 'make', sortable: true, filter: true, checkboxSelection: true},
-       {field: 'model', sortable: true, filter: true},
-       {field: 'price', sortable: true, filter: true}
+       {field: 'make', rowGroup: true},
+       {field: 'price'}
    ];
+
+   autoGroupColumnDef: ColDef = {
+      headerName: 'Model',
+      field: 'model',
+      cellRenderer: 'agGroupCellRenderer',
+      cellRendererParams: {
+          checkbox: true
+      }
+  };
 
 
 /*
@@ -26,17 +40,26 @@ export class AppComponent {
         { make: 'Porsche', model: 'Boxter', price: 72000 }
     ];
 */
-rowData: Observable<any[]>;
+rowData: Observable<any[]>; //PARA QUE ERA EL OBSERVABLE
 
    constructor(private http: HttpClient) {
       this.rowData = this.http.get<any[]>('https://www.ag-grid.com/example-assets/row-data.json');
    }
 
-   getSelectedRows(): void {
-            const selectedNodes = this.agGrid.api.getSelectedNodes();
-            const selectedData = selectedNodes.map(node => node.data);
-            const selectedDataStringPresentation = selectedData.map(node => `${node.make} ${node.model} $${node.price}`).join(', ');
-      
-            alert(`Selected nodes: ${selectedDataStringPresentation}`);
-         }
+   /*Well, we cheated a bit - calling alert is not exactly a call to our backend. Hopefully you will forgive us this shortcut for the sake of keeping the article short and simple. 
+   Of course, you can substitute that bit with a real-world application logic after you are done with the tutorial.
+   */
+
+   getSelectedRows() {
+      const selectedNodes = this.agGrid.api.getSelectedNodes();
+      const selectedData = selectedNodes.map(node => {
+        if (node.groupData) {
+          return { make: node.key, model: 'Group' };
+        }
+        return node.data;
+      });
+      const selectedDataStringPresentation = selectedData.map(node => `${node.make} ${node.model}`).join(', ');
+
+      alert(`Selected nodes: ${selectedDataStringPresentation}`);
+  }
 }
