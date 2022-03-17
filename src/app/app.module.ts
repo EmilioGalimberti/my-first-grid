@@ -8,15 +8,26 @@ we are using Angular's HttpClient and an async
 pipe. As a first step, let's add the HttpModule
 and use extern data base
 */
-import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
 import 'ag-grid-enterprise';
 
+import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component'
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NumberFormatterComponent,],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    AgGridModule.withComponents([])
+    //HttpClientModule,
+    
+    //All custom components used by ag-Grid should be listed in the AgGridModule.withComponents method imported into the main application module
+    AgGridModule.withComponents([
+      /*Custom cell renderer
+      we’re going to implement a custom cell renderer to show the price formatted according to a user’s locale. 
+      Here’s how the numbers are displayed on my computer:
+      */
+      NumberFormatterComponent, 
+      
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
