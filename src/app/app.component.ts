@@ -5,7 +5,8 @@ import { ColDef } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component';
-
+import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';
+import {RangeFilterComponent} from './RangeFilterComponent/range-filter.component';
 @Component({
    selector: 'app-root',
    templateUrl: './app.component.html',
@@ -29,7 +30,9 @@ export class AppComponent implements OnInit {
         editable: true, //Enabling editing
         //Specify the renderer for the column
         cellRenderer: 'numberFormatterComponent',
+        //custom cell editor
         cellEditor: 'numericEditorComponent',
+        /* custom filter */
         filter: 'rangeFilterComponent'
       }
    ];
@@ -40,7 +43,7 @@ export class AppComponent implements OnInit {
       cellRenderer: 'agGroupCellRenderer',
       cellRendererParams: {
           checkbox: true
-      }
+      },
   };
 
 
@@ -82,6 +85,11 @@ rowData = [];
 
   frameworkComponents = {
     numberFormatterComponent: NumberFormatterComponent,
+    // custom cell editor component
+    numericEditorComponent: NumericEditorComponent,
+    /* custom filtering component */
+    rangeFilterComponent: RangeFilterComponent,
+    
   };
 
   ngOnInit() {
