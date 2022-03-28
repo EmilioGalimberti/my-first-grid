@@ -22,7 +22,11 @@ export class AppComponent implements OnInit {
   };
 
    columnDefs: ColDef[] = [
-       {field: 'make', rowGroup: true},
+       {field:'model',sortable: false, cellRenderer: 'agGroupCellRenderer',
+       cellRendererParams: {
+           checkbox: true
+       }},
+       {field: 'make',sortable: false},
        {
          
         headerName: 'Price',
@@ -37,29 +41,12 @@ export class AppComponent implements OnInit {
       }
    ];
 
-   autoGroupColumnDef: ColDef = {
-      headerName: 'Model',
-      field: 'model',
-      cellRenderer: 'agGroupCellRenderer',
-      cellRendererParams: {
-          checkbox: true
-      },
-  };
 
 
-/*
-    rowData = [
-        { make: 'Toyota', model: 'Celica', price: 35000 },
-        { make: 'Ford', model: 'Mondeo', price: 32000 },
-        { make: 'Porsche', model: 'Boxter', price: 72000 }
-    ];
-*/
-//rowData: Observable<any[]>; //PARA QUE ERA EL OBSERVABLE
+
 rowData = [];
 
-//   constructor(private http: HttpClient) {
-//      this.rowData = this.http.get<any[]>('https://www.ag-grid.com/example-assets/row-data.json');
-//   }
+
 
    /*Well, we cheated a bit - calling alert is not exactly a call to our backend. Hopefully you will forgive us this shortcut for the sake of keeping the article short and simple. 
    Of course, you can substitute that bit with a real-world application logic after you are done with the tutorial.
