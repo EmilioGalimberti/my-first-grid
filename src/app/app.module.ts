@@ -9,7 +9,7 @@ pipe. As a first step, let's add the HttpModule
 and use extern data base
 */
 //import { HttpClientModule } from '@angular/common/http';
-import 'ag-grid-enterprise';
+//import 'ag-grid-enterprise';
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component'
 import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';

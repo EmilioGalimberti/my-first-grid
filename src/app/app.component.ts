@@ -1,7 +1,7 @@
 import { Component, ViewChild , OnInit} from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
 //import { Observable } from 'rxjs';
-import { ColDef } from 'ag-grid-community';
+
 import { AgGridAngular } from 'ag-grid-angular';
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component';
@@ -16,12 +16,12 @@ export class AppComponent implements OnInit {
   // AGREFAMOS EL VIEW CHILD PARA EL TEME DE LAS GETSELETCROWS PERO NO ME ACUERDO QUE HACIA EXACTAMENTE EL VIEWCHILD
    @ViewChild('agGrid') agGrid!: AgGridAngular;
 
-   defaultColDef: ColDef = {
+   defaultColDef = {
       sortable: true,
       filter: true
   };
 
-   columnDefs: ColDef[] = [
+   columnDefs = [
        {field:'model',sortable: false, cellRenderer: 'agGroupCellRenderer',
        cellRendererParams: {
            checkbox: true
