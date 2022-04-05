@@ -7,8 +7,11 @@
         [columnDefs]="columnDefs"
         rowSelection="multiple"
         [defaultColDef]="defaultColDef"
+        [suppressMenuHide]="true"
         [frameworkComponents]="frameworkComponents"
         [pagination]="true"
+
+        (gridReady)="onGridReady($event)"    
     >
     </ag-grid-angular>
   

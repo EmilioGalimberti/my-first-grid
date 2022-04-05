@@ -1,32 +1,45 @@
 import { Component, ViewChild , OnInit} from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
 //import { Observable } from 'rxjs';
-
+import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component';
 import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';
 import {RangeFilterComponent} from './RangeFilterComponent/range-filter.component';
+
+import {CustomHeader} from './CustomHeaderComponent/custom-header.component'
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+
 @Component({
    selector: 'app-root',
    templateUrl: './app.component.html',
    styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
   // AGREFAMOS EL VIEW CHILD PARA EL TEME DE LAS GETSELETCROWS PERO NO ME ACUERDO QUE HACIA EXACTAMENTE EL VIEWCHILD
    @ViewChild('agGrid') agGrid!: AgGridAngular;
 
-   defaultColDef = {
-      sortable: true,
-      filter: true
+   public defaultColDef: ColDef = {
+    editable: true,
+    sortable: true,
+    flex: 1,
+    minWidth: 100,
+    filter: true,
+    resizable: true,
+    headerComponentParams: {
+      menuIcon: 'fa-bars',
+    },
   };
 
-   columnDefs = [
-       {field:'model',sortable: false, cellRenderer: 'agGroupCellRenderer',
+   columnDefs: ColDef[] = [ // que diferncia hay con columnDefs = [
+       {field:'model',sortable: false, suppressMenu: true, cellRenderer: 'agGroupCellRenderer',
        cellRendererParams: {
            checkbox: true
        }},
-       {field: 'make',sortable: false},
+       {field: 'make',sortable: false,  suppressMenu: true, },
        {
          
         headerName: 'Price',
@@ -37,7 +50,9 @@ export class AppComponent implements OnInit {
         //custom cell editor
         cellEditor: 'numericEditorComponent',
         /* custom filter */
-        filter: 'rangeFilterComponent'
+        filter: 'rangeFilterComponent',
+        minWidth: 120,
+        headerComponentParams: { menuIcon: 'fa-cog' },
       }
    ];
 
@@ -76,13 +91,26 @@ rowData = [];
     numericEditorComponent: NumericEditorComponent,
     /* custom filtering component */
     rangeFilterComponent: RangeFilterComponent,
-    
+    agColumnHeader: CustomHeader,
   };
 
-  ngOnInit() {
+  onGridReady(params: GridReadyEvent) {
     fetch('https://www.ag-grid.com/example-assets/row-data.json')
       .then(result => result.json())
       .then(rowData => this.rowData = rowData);
   }
   
+  /*
+  public rowData!: any[];
+
+  constructor(private http: HttpClient) {}
+
+  onGridReady(params: GridReadyEvent) {
+    this.http
+      .get<any[]>('https://www.ag-grid.com/example-assets/olympic-winners.json')
+      .subscribe((data) => {
+        this.rowData = data;
+      });
+  }
+*/
 }

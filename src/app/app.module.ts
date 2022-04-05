@@ -15,8 +15,17 @@ import {NumberFormatterComponent} from './NumberFormatterComponent/number-format
 import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';
 import {RangeFilterComponent} from './RangeFilterComponent/range-filter.component';
 
+import {CustomHeader} from './CustomHeaderComponent/custom-header.component'
+
 @NgModule({
-  declarations: [AppComponent, NumberFormatterComponent,  NumericEditorComponent, RangeFilterComponent],
+  declarations: [
+    AppComponent, 
+    NumberFormatterComponent,  
+    NumericEditorComponent, 
+    RangeFilterComponent,
+    CustomHeader
+    
+  ],
   imports: [
     BrowserModule,
     //HttpClientModule,
@@ -29,7 +38,8 @@ import {RangeFilterComponent} from './RangeFilterComponent/range-filter.componen
       */
       NumberFormatterComponent,
       NumericEditorComponent, 
-      RangeFilterComponent
+      RangeFilterComponent,
+      CustomHeader
     ])
   ],
   providers: [],
