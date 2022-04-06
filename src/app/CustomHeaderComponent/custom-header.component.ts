@@ -9,7 +9,6 @@ import { IHeaderParams } from 'ag-grid-community';
 @Component({
   selector: 'app-custom-header',
   template: `
-    
   `,
   styles: [
     `
@@ -29,7 +28,10 @@ export class CustomHeader implements IHeaderAngularComp {
   // The agInit(params) method is called on the header component once.
   // See below for details on the parameters.
   agInit(params: IHeaderParams /*& ICustomHeaderParams*/): void {
+    this.params = params
+    console.log(this.params);
     /*this.params = params;
+    
 
     params.column.addEventListener(
       'sortChanged',

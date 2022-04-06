@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
        }},
        // this column uses a custom header
        // component specified in comps
-       {field: 'make', header: 'customHeader' },
+       {field: 'make'},
        {
         field: 'price',
         editable: true, //Enabling editing
