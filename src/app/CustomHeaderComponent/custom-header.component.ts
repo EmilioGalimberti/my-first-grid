@@ -2,94 +2,50 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IHeaderAngularComp } from 'ag-grid-angular';
 import { IHeaderParams } from 'ag-grid-community';
 
-export interface ICustomHeaderParams {
+/*export interface ICustomHeaderParams {
   menuIcon: string;
 }
-
+*/
 @Component({
   selector: 'app-custom-header',
   template: `
-    <div>
-      <div
-        *ngIf="params.enableMenu"
-        #menuButton
-        class="customHeaderMenuButton"
-        (click)="onMenuClicked($event)"
-      >
-        <i class="fa {{ params.menuIcon }}"></i>
-      </div>
-      <div class="customHeaderLabel">{{ params.displayName }}</div>
-      <div
-        *ngIf="params.enableSorting"
-        (click)="onSortRequested('asc', $event)"
-        [ngClass]="ascSort"
-        class="customSortDownLabel"
-      >
-        <i class="fa fa-long-arrow-alt-down"></i>
-      </div>
-      <div
-        *ngIf="params.enableSorting"
-        (click)="onSortRequested('desc', $event)"
-        [ngClass]="descSort"
-        class="customSortUpLabel"
-      >
-        <i class="fa fa-long-arrow-alt-up"></i>
-      </div>
-      <div
-        *ngIf="params.enableSorting"
-        (click)="onSortRequested('asc', $event)"
-        [ngClass]="noSort"
-        class="customSortRemoveLabel"
-      >
-        <i class="fa fa-times"></i>
-      </div>
-    </div>
+    
   `,
   styles: [
     `
-      .customHeaderMenuButton,
-      .customHeaderLabel,
-      .customSortDownLabel,
-      .customSortUpLabel,
-      .customSortRemoveLabel {
-        float: left;
-        margin: 0 0 0 3px;
-      }
-
-      .customSortUpLabel {
-        margin: 0;
-      }
-
-      .customSortRemoveLabel {
-        font-size: 11px;
-      }
-
-      .active {
-        color: cornflowerblue;
-      }
     `,
   ],
 })
 export class CustomHeader implements IHeaderAngularComp {
-  public params!: IHeaderParams & ICustomHeaderParams;
+  params: any;
+  /*public params!: IHeaderParams //& ICustomHeaderParams;
 
   public ascSort = 'inactive';
   public descSort = 'inactive';
-  public noSort = 'inactive';
+  public noSort = 'inactive';*/
 
-  @ViewChild('menuButton', { read: ElementRef }) public menuButton!: ElementRef;
+  //@ViewChild('menuButton', { read: ElementRef }) public menuButton!: ElementRef;
 
-  agInit(params: IHeaderParams & ICustomHeaderParams): void {
-    this.params = params;
+  // The agInit(params) method is called on the header component once.
+  // See below for details on the parameters.
+  agInit(params: IHeaderParams /*& ICustomHeaderParams*/): void {
+    /*this.params = params;
 
     params.column.addEventListener(
       'sortChanged',
       this.onSortChanged.bind(this)
     );
 
-    this.onSortChanged();
+    this.onSortChanged();*/
   }
 
+// option 1) tell the grid when you want to progress the sorting
+onSortClicked(event) {
+  // in this example, we do multi sort if Shift key is pressed
+ this.params.progressSort(event.shiftKey);
+};
+
+/*
   onMenuClicked() {
     this.params.showColumnMenu(this.menuButton.nativeElement);
   }
@@ -109,7 +65,13 @@ export class CustomHeader implements IHeaderAngularComp {
     this.params.setSort(order, event.shiftKey);
   }
 
-  refresh(params: IHeaderParams) {
-    return false;
+*/
+
+
+   // Gets called when a new Column Definition has been set for this header.
+   // If you handle the refresh of your header return true otherwise return false and the grid will re-create your header from scratch.
+  refresh(params: IHeaderParams)
+  {//: boolean 
+    return true;
   }
 }

@@ -1,7 +1,6 @@
 import { Component, ViewChild , OnInit} from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
 //import { Observable } from 'rxjs';
-import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component';
@@ -18,31 +17,24 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
    templateUrl: './app.component.html',
    styleUrls: ['./app.component.scss']
 })
-export class AppComponent{
+export class AppComponent implements OnInit {
   // AGREFAMOS EL VIEW CHILD PARA EL TEME DE LAS GETSELETCROWS PERO NO ME ACUERDO QUE HACIA EXACTAMENTE EL VIEWCHILD
    @ViewChild('agGrid') agGrid!: AgGridAngular;
 
-   public defaultColDef: ColDef = {
-    editable: true,
+   defaultColDef = {
     sortable: true,
-    flex: 1,
-    minWidth: 100,
-    filter: true,
-    resizable: true,
-    headerComponentParams: {
-      menuIcon: 'fa-bars',
-    },
+    filter: true
   };
 
-   columnDefs: ColDef[] = [ // que diferncia hay con columnDefs = [
+   columnDefs  = [ // que diferncia hay con columnDefs = [
        {field:'model',sortable: false, suppressMenu: true, cellRenderer: 'agGroupCellRenderer',
        cellRendererParams: {
            checkbox: true
        }},
-       {field: 'make',sortable: false,  suppressMenu: true, },
+       // this column uses a custom header
+       // component specified in comps
+       {field: 'make', header: 'customHeader' },
        {
-         
-        headerName: 'Price',
         field: 'price',
         editable: true, //Enabling editing
         //Specify the renderer for the column
@@ -52,7 +44,6 @@ export class AppComponent{
         /* custom filter */
         filter: 'rangeFilterComponent',
         minWidth: 120,
-        headerComponentParams: { menuIcon: 'fa-cog' },
       }
    ];
 
@@ -94,7 +85,7 @@ rowData = [];
     agColumnHeader: CustomHeader,
   };
 
-  onGridReady(params: GridReadyEvent) {
+  ngOnInit() {
     fetch('https://www.ag-grid.com/example-assets/row-data.json')
       .then(result => result.json())
       .then(rowData => this.rowData = rowData);
