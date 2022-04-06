@@ -2,13 +2,19 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IHeaderAngularComp } from 'ag-grid-angular';
 import { IHeaderParams } from 'ag-grid-community';
 
+
+
 export interface ICustomHeaderParams {
   menuIcon: string;
 }
 
 @Component({
   selector: 'app-custom-header',
+
+  styleUrls: ['./styleheader.scss'],
+
   template: `
+
     <div>
       <div
         *ngIf="params.enableMenu"
@@ -37,7 +43,7 @@ export interface ICustomHeaderParams {
       </div>
       <div
         *ngIf="params.enableSorting"
-        (click)="onSortRequested('asc', $event)"
+        (click)="onSortRequested(null, $event)"
         [ngClass]="noSort"
         class="customSortRemoveLabel"
       >
@@ -81,7 +87,7 @@ export class CustomHeader implements IHeaderAngularComp {
 
   agInit(params: IHeaderParams & ICustomHeaderParams): void {
     this.params = params;
-
+    console.log(params)
     params.column.addEventListener(
       'sortChanged',
       this.onSortChanged.bind(this)
@@ -90,7 +96,7 @@ export class CustomHeader implements IHeaderAngularComp {
     this.onSortChanged();
   }
 
-  onMenuClicked() {
+  onMenuClicked(event) {
     this.params.showColumnMenu(this.menuButton.nativeElement);
   }
 

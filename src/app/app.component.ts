@@ -45,6 +45,7 @@ export class AppComponent{
         headerName: 'Price',
         field: 'price',
         editable: true, //Enabling editing
+        sortable: true,
         //Specify the renderer for the column
         cellRenderer: 'numberFormatterComponent',
         //custom cell editor
