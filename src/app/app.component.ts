@@ -15,7 +15,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 @Component({
    selector: 'app-root',
    templateUrl: './app.component.html',
-   styleUrls: ['./app.component.scss']
+   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   // AGREFAMOS EL VIEW CHILD PARA EL TEME DE LAS GETSELETCROWS PERO NO ME ACUERDO QUE HACIA EXACTAMENTE EL VIEWCHILD
@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
 
    defaultColDef = {
     sortable: true,
-    filter: true
+    filter: true,
+    headerHeigth:200
   };
 
    columnDefs  = [ // que diferncia hay con columnDefs = [
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
        }},
        // this column uses a custom header
        // component specified in comps
-       {field: 'make'},
+       {field: 'make', width: 200},
        {
         field: 'price',
         editable: true, //Enabling editing
@@ -47,7 +48,7 @@ export class AppComponent implements OnInit {
       }
    ];
 
-
+public headerHeight = 30; //alturaaaa
 
 
 rowData = [];
