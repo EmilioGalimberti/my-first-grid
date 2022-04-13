@@ -1,7 +1,7 @@
 import { Component, ViewChild , OnInit} from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
 //import { Observable } from 'rxjs';
-import { AgGridAngular } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component';
 import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';
@@ -11,6 +11,7 @@ import {CustomHeader} from './CustomHeaderComponent/custom-header.component'
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { AgGridAngular } from 'ag-grid-angular';
 
 @Component({
    selector: 'app-root',
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit {
        }},
        // this column uses a custom header
        // component specified in comps
-       {field: 'make', width: 200},
+       {field: 'make', width: 200 },
        {
         field: 'price',
         editable: true, //Enabling editing
@@ -43,6 +44,7 @@ export class AppComponent implements OnInit {
         //custom cell editor
         cellEditor: 'numericEditorComponent',
         /* custom filter */
+        
         filter: 'rangeFilterComponent',
         minWidth: 120,
       }

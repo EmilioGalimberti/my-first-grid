@@ -1,25 +1,27 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener,ViewChild } from '@angular/core';
 import { IHeaderAngularComp } from 'ag-grid-angular';
 import { IHeaderParams } from 'ag-grid-community';
 
-
+import { faArrowDown, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-custom-header',
   template: `
     <div role="columnheader" class="header-cell">
-      
-        <div >
-            {{params.displayName}}
-        </div>
-
-        <div id="sorting" *ngIf="params.enableSorting" (click)='onSortClicked($event)'>
-          *
-        </div>
        
-        <div #menuButton *ngIf="params.enableMenu" (click)='onMenuClicked()'>
-          🐱‍👤
+          <div >
+              {{params.displayName}}
+          </div>
+        <div class="interaccion"> 
+          <div id="sorting" *ngIf="params.enableSorting" (click)='onSortClicked($event)'>
+            *
+          </div>
+        
+          <div  #menuButton *ngIf="params.enableMenu" (click)='onMenuClicked()'>
+            🐱‍👤
+          </div>
         </div>
+      
     </div>
   `,
   styles: [
@@ -27,9 +29,18 @@ import { IHeaderParams } from 'ag-grid-community';
     .header-cell{
       display: flex;
       width:50px;
-      background-color: blue
     }      
-    
+
+    .interaccion{
+      display: none;
+      
+    }
+
+    .header-cell:hover .interaccion{
+      display:flex
+      
+    }
+
     #sorting{
       margin-left: 10px;
       margin-right: 10px
@@ -38,6 +49,9 @@ import { IHeaderParams } from 'ag-grid-community';
     `,
   ],
 })
+
+//tabindex
+
 export class CustomHeader implements IHeaderAngularComp {
   params: any;
 

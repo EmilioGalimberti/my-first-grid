@@ -17,18 +17,21 @@ import {RangeFilterComponent} from './RangeFilterComponent/range-filter.componen
 
 import {CustomHeader} from './CustomHeaderComponent/custom-header.component'
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent, 
     NumberFormatterComponent,  
     NumericEditorComponent, 
     RangeFilterComponent,
-    CustomHeader
+    CustomHeader,
     
   ],
   imports: [
     BrowserModule,
     //HttpClientModule,
+    FontAwesomeModule,
 
     //All custom components used by ag-Grid should be listed in the AgGridModule.withComponents method imported into the main application module
     AgGridModule.withComponents([
