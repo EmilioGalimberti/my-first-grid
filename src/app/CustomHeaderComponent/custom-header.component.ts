@@ -7,19 +7,22 @@ import { faArrowDown, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icon
 @Component({
   selector: 'app-custom-header',
   template: `
+
+
     <div role="columnheader" class="header-cell">
        
-          <div >
+          <div>
               {{params.displayName}}
           </div>
-        <div class="interaccion"> 
-          <div id="sorting" *ngIf="params.enableSorting" (click)='onSortClicked($event)'>
+        <div class="interaccion" tabindex="0"> 
+          <div  tabIndex="0" id="sorting" *ngIf="params.enableSorting" (click)='onSortClicked($event)'>
             *
           </div>
         
-          <div  #menuButton *ngIf="params.enableMenu" (click)='onMenuClicked()'>
+          <div tabIndex="0" #menuButton *ngIf="params.enableMenu" (click)='onMenuClicked()'>
             🐱‍👤
           </div>
+          
         </div>
       
     </div>
@@ -32,15 +35,11 @@ import { faArrowDown, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icon
     }      
 
     .interaccion{
-      display: none;
+      display: flex;
       
     }
-
-    .header-cell:hover .interaccion{
-      display:flex
-      
-    }
-
+    
+  
     #sorting{
       margin-left: 10px;
       margin-right: 10px
@@ -49,19 +48,53 @@ import { faArrowDown, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icon
     `,
   ],
 })
-
+/* 
+.header-cell:hover .interaccion{
+  display:flex
+  
+}
+*/
 //tabindex
 
 export class CustomHeader implements IHeaderAngularComp {
+ 
+/*
+  private tabKey(event: KeyboardEvent) {
+    let parentModal = $(document).find('.modal');
+    //List of html elements which can be focused by tabbing.
+    let focusableElementsArrayString = 'a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"]';
+    let focusableElementsInModal = parentModal.find(focusableElementsArrayString);
+    let numberOfElements = focusableElementsInModal.length;
+    let firstTabElement = focusableElementsInModal[0];
+    let lastTabElement = focusableElementsInModal[numberOfElements - 1];
+    // Check for Shift + Tab
+    if (event.keyCode === 9 && event.shiftKey) {
+        if (document.activeElement === firstTabElement) {
+            event.preventDefault();
+            lastTabElement.focus();
+        } // Check for Tab
+    } else if (event.keyCode === 9) {
+        if (document.activeElement === lastTabElement) {
+            event.preventDefault();
+            firstTabElement.focus();
+        }
+    }
+}
+*/ 
+ 
   params: any;
 
   @ViewChild('menuButton', { read: ElementRef }) public menuButton! : ElementRef;
+
+  @HostListener('keydown',['$event']) onKeyDown($event: KeyboardEvent){
+    console.log("funciona el hijo");
+  }
 
   // The agInit(params) method is called on the header component once.
   // See below for details on the parameters.
   agInit(params: IHeaderParams /*& ICustomHeaderParams*/): void {
     this.params = params
-    console.log(this.params);
+    // console.log(this.params);
 
   }
 

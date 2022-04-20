@@ -1,7 +1,9 @@
-import { Component, ViewChild , OnInit} from '@angular/core';
+import { Component, ViewChild , OnInit, HostListener} from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
 //import { Observable } from 'rxjs';
-import 'ag-grid-enterprise';
+
+import { PriceFilter } from './RangeFilterComponent/price-filter.component';
+
 
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component';
 import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';
@@ -22,6 +24,17 @@ export class AppComponent implements OnInit {
   // AGREFAMOS EL VIEW CHILD PARA EL TEME DE LAS GETSELETCROWS PERO NO ME ACUERDO QUE HACIA EXACTAMENTE EL VIEWCHILD
    @ViewChild('agGrid') agGrid!: AgGridAngular;
 
+  @HostListener('keydown',['$event']) onKeyDown($event: KeyboardEvent){
+    let sort =  document.getElementById('sorting');
+    //console.log(sort);
+    if(($event.target as HTMLElement).classList.contains("ag-header-cell")){
+      console.log(($event.target as HTMLElement).children.namedItem("app-custom-header"));
+    } 
+
+    // $event.preventDefault();
+    // $event.stopPropagation();
+  } 
+
    defaultColDef = {
     sortable: true,
     filter: true,
@@ -37,6 +50,7 @@ export class AppComponent implements OnInit {
        // component specified in comps
        {field: 'make', width: 200 },
        {
+        headerName: 'Price',
         field: 'price',
         editable: true, //Enabling editing
         //Specify the renderer for the column
@@ -44,8 +58,9 @@ export class AppComponent implements OnInit {
         //custom cell editor
         cellEditor: 'numericEditorComponent',
         /* custom filter */
-        
         filter: 'rangeFilterComponent',
+        
+        
         minWidth: 120,
       }
    ];

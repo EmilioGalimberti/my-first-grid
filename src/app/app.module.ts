@@ -11,6 +11,9 @@ and use extern data base
 //import { HttpClientModule } from '@angular/common/http';
 //import 'ag-grid-enterprise';
 
+import { PriceFilter } from './RangeFilterComponent/price-filter.component';
+import { FormsModule } from '@angular/forms';
+
 import {NumberFormatterComponent} from './NumberFormatterComponent/number-formatter.component'
 import {NumericEditorComponent} from './NumericEditorComponent/numeric-editor.component';
 import {RangeFilterComponent} from './RangeFilterComponent/range-filter.component';
@@ -25,14 +28,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NumberFormatterComponent,  
     NumericEditorComponent, 
     RangeFilterComponent,
+    PriceFilter,
     CustomHeader,
-    
   ],
   imports: [
     BrowserModule,
     //HttpClientModule,
     FontAwesomeModule,
-
+    FormsModule,
     //All custom components used by ag-Grid should be listed in the AgGridModule.withComponents method imported into the main application module
     AgGridModule.withComponents([
       /*Custom cell renderer
@@ -42,6 +45,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       NumberFormatterComponent,
       NumericEditorComponent, 
       RangeFilterComponent,
+      PriceFilter,
       CustomHeader
     ])
   ],
