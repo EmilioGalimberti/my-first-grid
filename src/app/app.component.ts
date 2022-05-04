@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
        }},
        // this column uses a custom header
        // component specified in comps
-       {field: 'make', width: 200, cellRender: 'makeFormatterComponent'  },
+       {field: 'make', width: 200, cellRenderer: 'makeFormatterComponent'  },
        {
         headerName: 'Price',
         field: 'price',
