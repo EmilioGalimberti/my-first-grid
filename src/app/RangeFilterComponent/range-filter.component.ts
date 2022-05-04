@@ -112,9 +112,11 @@ export class RangeFilterComponent implements AfterViewInit {
     const filter = this.filter.split('-');
     const gt = Number(filter[0]);
     const lt = Number(filter[1]);
-    const value = this.params.valueGetter(params.node);
+    //const value = this.params.valueGetter(params.node);
+    let valor = params.node.data.price
 
-    return value >= gt && value <= lt;
+
+    return valor >= gt && valor <= lt;
   }
 
   getModel() {

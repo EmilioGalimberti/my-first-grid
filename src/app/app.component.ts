@@ -11,6 +11,8 @@ import {RangeFilterComponent} from './RangeFilterComponent/range-filter.componen
 
 import {CustomHeader} from './CustomHeaderComponent/custom-header.component'
 
+import { MakeFormatterComponent } from './MakeFormatterComponent/make-formatter.component';
+
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridAngular } from 'ag-grid-angular';
@@ -48,7 +50,7 @@ export class AppComponent implements OnInit {
        }},
        // this column uses a custom header
        // component specified in comps
-       {field: 'make', width: 200 },
+       {field: 'make', width: 200, cellRender: 'makeFormatterComponent'  },
        {
         headerName: 'Price',
         field: 'price',
@@ -101,6 +103,7 @@ rowData = [];
     /* custom filtering component */
     rangeFilterComponent: RangeFilterComponent,
     agColumnHeader: CustomHeader,
+    makeFormatterComponent: MakeFormatterComponent
   };
 
   ngOnInit() {

@@ -19,7 +19,9 @@ export class NumberFormatterComponent {
 
   //It will receive the value of a cell through the agInit method, is used to receive parameters from ag-Grid.
   agInit(params: any): void {
+    
     this.params = params;
+    //console.log(params)
   }
 }
 
