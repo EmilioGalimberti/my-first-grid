@@ -14,22 +14,15 @@ import { Component } from "@angular/core";
 
 export class MakeFormatterComponent {
     params: any;
-    newparam: any;
+    
     
     agInit(params: any): void{
         this.params = params;
         //console.log(params.value)
-        if(params.value == "P"){
-            console.log(params)
-            console.log('ford')
-        }
         
         
     }
 
-    // Agregar la posibilidad de editar la columna de make, Pero segun el caso tendra un editor diferente por ejemplo:
-    // Ford = edit with select
-    // toyota edit with inputText
-    // porche edit with default(checkbox)
+   
 
 }
