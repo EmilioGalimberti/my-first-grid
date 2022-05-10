@@ -30,6 +30,7 @@ export class NumericEditorComponent implements AfterViewInit {
   
   agInit(params: any): void {
     this.params = params;
+    console.log(params.value)
   }
   /*Once editing is finished by pressing Enter or removing the focus from the input, ag-Grid needs to get a value from our editor. 
   To do that, it calls the getValue method on our Angular component that should return the result of the editing.

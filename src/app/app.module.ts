@@ -21,6 +21,7 @@ import {RangeFilterComponent} from './RangeFilterComponent/range-filter.componen
 import {CustomHeader} from './CustomHeaderComponent/custom-header.component'
 
 import {MakeFormatterComponent} from './MakeFormatterComponent/make-formatter.component'
+import {MakeEditorComponent} from './MakeEditorComponent/make-editor.component'
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -34,7 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RangeFilterComponent,
     PriceFilter,
     CustomHeader,
-    MakeFormatterComponent
+    MakeFormatterComponent,
+    MakeEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       RangeFilterComponent,
       PriceFilter,
       CustomHeader,
-      MakeFormatterComponent
+      MakeFormatterComponent,
+      MakeEditorComponent
     ])
   ],
   providers: [],

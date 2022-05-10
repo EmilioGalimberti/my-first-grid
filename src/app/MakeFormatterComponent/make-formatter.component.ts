@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
     selector: 'makeForamatter',
     template:`
@@ -16,16 +15,16 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export class MakeFormatterComponent {
     params: any;
     newparam: any;
-    coffe = faCoffee
+    
     agInit(params: any): void{
         this.params = params;
-        console.log(params.value)
+        //console.log(params.value)
         if(params.value == "P"){
             console.log(params)
             console.log('ford')
         }
         
-
+        
     }
 
     // Agregar la posibilidad de editar la columna de make, Pero segun el caso tendra un editor diferente por ejemplo:
