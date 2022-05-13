@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
        cellRenderer: 'makeFormatterComponent',
        cellEditor: 'makeEditorComponent' },
        {
-        headerName: 'Price',
+        headerName: 'Price', 
         field: 'price',
         editable: true, //Enabling editing
         //Specify the renderer for the column
@@ -131,4 +131,17 @@ rowData = [];
       });
   }
 */
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////// TABLA 2
+
+columnDefsHomeworks: ColDef[] = [
+  { headerName:'Homework', field:'homework'},
+  {headerName:'Hours', field:'hours'}
+]
+rowDataHomeworks = [
+  { homework: 'Maths', hours: '8' },
+  { homework: 'Computer science', hours: '12' },
+  { homework: 'Science', hours: '3' }
+];
+
 }

@@ -75,4 +75,13 @@ export class MakeEditorComponent implements AfterViewInit{
     this.params.api.stopEditing();
   }
 
+
+  /*
+    nueva grid
+    con calendario
+    1 columna para escribir datoss
+    2 (por semana) las otras columnas para escribir horas, y luego que se repitan solas
+
+    */
+
 }

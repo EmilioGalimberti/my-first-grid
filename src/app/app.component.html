@@ -22,4 +22,19 @@
         we will need to add the #agGrid id to our 
         component.-->
     <button (click)="getSelectedRows()">Get Selected Rows</button>
+
+
+    <div>
+
+        <ag-grid-angular
+        
+            style="width: 590px; height: 500px;"
+            class="ag-theme-alpine"
+            [rowData]="rowDataHomeworks"
+             [columnDefs]="columnDefsHomeworks">
+            
+            </ag-grid-angular>
+        
+    </div>
+
 </html>
